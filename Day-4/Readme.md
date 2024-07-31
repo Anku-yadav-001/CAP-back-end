@@ -7,5 +7,16 @@ it help us to connect our server and database.
   mongoose.connect(url)
 
 2. structure the data
-     
+     schema
+     -- let schema=mongoose.Schema({
+          name:String,
+          age:Number
+        })
+
+     model
+     -- let model=mongoose.model("collection_name",schema)
+
+     product
+     -- model.insertMany([{}{}])
+
 --> validate the data

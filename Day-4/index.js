@@ -1,12 +1,22 @@
-const mongoose = require("mongoose")
-const url = "mongodb://127.0.0.1:27017"
+const express = require("express")
+const PORT =8080
+const server = express()
+const connection = require("./config/db")
+const userRoute = require("./route/user.route")
+//server
+server.use(express.json())
+server.use("/user",userRoute)
+server.get("/",(req,res)=>{
+     res.send("users details")
+})
 
-async function main(){
+
+server.listen(PORT,async ()=>{
      try {
-          await mongoose.connect(url)
-          console.log("Connected to database");
+          await connection
+          console.log("server is running on port", PORT);
+          console.log("connected to database");
      } catch (error) {
-          console.log("Failed to connect with database");
+          console.log("failed to connect with database",error);
      }
-}
-main()
+})
