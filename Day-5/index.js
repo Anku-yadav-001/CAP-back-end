@@ -21,8 +21,11 @@ server.get("/dashboard", (req, res) => {
 server.get("/product",auth, (req, res) => {
      res.send("product data...")
 })
-server.get("/cart",[auth,adminMiddleware], (req, res) => {
+server.get("/cart",auth, (req, res) => {
      res.send("cart data...")
+})
+server.get("/add-product", [auth, adminMiddleware], (req, res) => {
+     res.send("product added...")
 })
 // -----------------------
 
