@@ -5,6 +5,7 @@ const morgan = require("morgan")
 const fs = require("fs")
 const path = require("path")
 const checkUser = require("../middlewares/logger.middleware")
+const auth = require("../middlewares/auth.middleware")
 
 const addInfoInFile = fs.createWriteStream(path.join('access.log'));
 const info = `
@@ -17,7 +18,7 @@ RTIME : :response-time ms
 DATE  : :date[iso]`;
 
 movieRoute.use(morgan(info,{stream:addInfoInFile}))
-movieRoute.post("/add-movie",checkUser,async (req, res)=>{
+movieRoute.post("/add-movie",auth,async (req, res)=>{
      const {name,year,time,director,published} = req.body
      try {
           let data = new movieModel({
